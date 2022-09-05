@@ -892,10 +892,6 @@
                                         "value": "vhub"
                                     },
                                     {
-                                        "label": "Hub and spoke with your own third-party NVA",
-                                        "value": "nva"
-                                    },
-                                    {
                                         "label": "Virtual WAN (Microsoft managed)",
                                         "value": "vwan"
                                     },
@@ -1680,7 +1676,7 @@
                             "name": "esIdentity",
                             "type": "Microsoft.Common.OptionsGroup",
                             "label": "Assign recommended policies to govern identity and domain controllers",
-                            "defaultValue": "Yes (recommended)",
+                            "defaultValue": "No",
                             "toolTip": "If 'Yes' is selected when also adding a subscription for connectivity, Azure Policy will be assigned at the scope to govern your identity resources.",
                             "constraints": {
                                 "allowedValues": [
@@ -1848,7 +1844,8 @@
                             },
                             "visible": "[and(equals(steps('esIdentityGoalState').esIdentityConnectivity, 'Yes'), not(equals(steps('esConnectivityGoalState').esHub,'No')))]"
                         }
-                    ]
+                    ],
+                    "visible": false
                 },
                 {
                     "name": "lzGoalState",
