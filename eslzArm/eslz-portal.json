@@ -1844,8 +1844,7 @@
                             },
                             "visible": "[and(equals(steps('esIdentityGoalState').esIdentityConnectivity, 'Yes'), not(equals(steps('esConnectivityGoalState').esHub,'No')))]"
                         }
-                    ],
-                    "visible": false
+                    ]
                 },
                 {
                     "name": "lzGoalState",
