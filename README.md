@@ -1,6 +1,6 @@
 # Enterprise-Scale - Deploy LZ
 
-## Test Deploy LZ with Subscription Request
+## Deploy LZ with Subscription Request
 
 | Reference implementation | Description | ARM Template |
 |:-------------------------|:-------------|:-------------|
