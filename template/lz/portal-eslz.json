@@ -45,6 +45,7 @@
           {
             "name": "mgApi",
             "type": "Microsoft.Solutions.ArmApiControl",
+            "visible": "[equals(steps('lzSettings').optionSubscription,'No')]",
             "request": {
               "method": "GET",
               "path": "providers/Microsoft.Management/managementGroups?api-version=2020-02-01"
@@ -53,6 +54,7 @@
           {
             "name": "esBillingApi",
             "type": "Microsoft.Solutions.ArmApiControl",
+            "visible": "[equals(steps('lzSettings').optionSubscription,'No')]",
             "request": {
               "method": "GET",
               "path": "providers/Microsoft.Billing/billingAccounts?api-version=2020-05-01"
@@ -77,6 +79,7 @@
           {
             "name": "esEaApi",
             "type": "Microsoft.Solutions.ArmApiControl",
+            "visible": "[equals(steps('lzSettings').optionSubscription,'No')]",
             "request": {
               "method": "GET",
               "path": "[concat(steps('lzSettings').esBillingAccount, '/enrollmentAccounts/', '?api-version=2019-10-01-preview')]"
