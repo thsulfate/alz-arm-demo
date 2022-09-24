@@ -6,9 +6,9 @@
     "basics": [],
     "steps": [
       {
-        "name": "optionCreation",
-        "label": "Opsi Subscription",
-        "bladeTitle": "Opsi Subscription",
+        "name": "lzSettings",
+        "label": "Create Enterprise-Scale Landing Zones",
+        "bladeTitle": "Company prefix",
         "elements": [
           {
             "name": "optionSubscription",
@@ -29,19 +29,11 @@
               ]
             },
             "visible": true
-          }
-        ]
-      },
-      {
-        "name": "lzSettings",
-        "label": "Create Enterprise-Scale Landing Zones",
-        "bladeTitle": "Company prefix",
-        "visible": "[equals(steps('optionCreation').optionSubscription,'No')]",
-        "elements": [
+          },
           {
             "name": "textBlock0",
             "type": "Microsoft.Common.TextBlock",
-            "visible": true,
+            "visible": "[equals(steps('optionCreation').optionSubscription,'No')]",
             "options": {
               "text": "Select the billing account and enrollment account used for subscription provisioning.",
               "link": {
@@ -76,7 +68,7 @@
             "filter": true,
             "filterPlaceholder": "Filter items ...",
             "multiLine": true,
-            "visible": true,
+            "visible": "[equals(steps('optionCreation').optionSubscription,'No')]",
             "constraints": {
               "allowedValues": "[map(steps('lzSettings').esBillingApi.value, (billing) => parse(concat('{\"label\":\"', billing.properties.displayName, '\",\"description\":\"', billing.id, '\",\"value\":\"', toLower(billing.id), '\"}')) )]",
               "required": true
@@ -100,7 +92,7 @@
             "filter": true,
             "filterPlaceholder": "Filter items ...",
             "multiLine": true,
-            "visible": true,
+            "visible": "[equals(steps('optionCreation').optionSubscription,'No')]",
             "constraints": {
               "allowedValues": "[map(steps('lzSettings').esEaApi.value, (ea) => parse(concat('{\"label\":\"', ea.properties.displayName, '\",\"description\":\"', ea.id, '\",\"value\":\"', toLower(ea.id), '\"}')) )]",
               "required": true
@@ -109,7 +101,7 @@
           {
             "name": "textBlock1",
             "type": "Microsoft.Common.TextBlock",
-            "visible": true,
+            "visible": "[equals(steps('optionCreation').optionSubscription,'No')]",
             "options": {
               "text": "Select target management group for each subscription you will create",
               "link": {
@@ -123,6 +115,7 @@
             "type": "Microsoft.Common.EditableGrid",
             "ariaLabel": "Select management group and provide subscription name",
             "label": "Subscriptions",
+            "visible": "[equals(steps('optionCreation').optionSubscription,'No')]",
             "constraints": {
               "width": "Medium",
               "rows": {
