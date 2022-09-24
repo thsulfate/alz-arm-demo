@@ -30,7 +30,9 @@
             },
             "visible": true
           }
-        ],
+        ]
+      },
+      {
         "name": "lzSettings",
         "label": "Create Enterprise-Scale Landing Zones",
         "bladeTitle": "Company prefix",
