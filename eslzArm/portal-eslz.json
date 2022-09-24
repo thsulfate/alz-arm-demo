@@ -5,7 +5,6 @@
     "config": {
       "isWizard": true
     },
-    "basics": [],
     "steps": [
       {
         "name": "lzSettings",
