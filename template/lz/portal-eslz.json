@@ -205,7 +205,12 @@
                 "name": "subscriptionSelector",
                 "type": "Microsoft.Solutions.ResourceSelector",
                 "label": "Select Subscription",
-                "resourceType": "Microsoft.Storage"
+                "resourceType": "Microsoft.Storage/storageAccounts",
+                "options": {
+                  "filter": {
+                    "location": "onBasics"
+                  }
+                }
               },
               {
                 "name": "text2",
