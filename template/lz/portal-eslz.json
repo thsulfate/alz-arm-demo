@@ -227,7 +227,7 @@
               "type": "Microsoft.Common.DropDown",
               "placeholder": "Select Management Group",
               "constraints": {
-                "allowedValues": "[map(steps('lzSettings').createSubscription.mgApi.value, (mg) => parse(concat('{\"label\":\"', mg.name, '\",\"description\":\"', mg.id, '\",\"value\":\"', toLower(mg.name), '\"}')) )]",
+                "allowedValues": "[map(steps('lzSettings').existingSubscription.mgApi.value, (mg) => parse(concat('{\"label\":\"', mg.name, '\",\"description\":\"', mg.id, '\",\"value\":\"', toLower(mg.name), '\"}')) )]",
                 "required": true
               }
             }
