@@ -237,7 +237,7 @@
       "optionSubscription": "[steps('lzSettings').optionSubscription]",
       "subscriptions": "[steps('lzSettings').createSubscription.esSubscription]",
       "billingAccount": "[steps('lzSettings').createSubscription.esEa]",
-      "esLZSub": "[steps('lzSettings').existingSubscription.esLZSubs]",
+      "esLZSub": "[steps('lzSettings').existingSubscription.esLZSub]",
       "managementGroup": "[steps('lzSettings').existingSubscription.managementGroup]"
     }
   }
