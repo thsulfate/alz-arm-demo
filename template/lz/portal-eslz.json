@@ -220,7 +220,7 @@
             }
           },
           {
-            "name": "managamentGroup",
+            "name": "managementGroup",
             "type": "Microsoft.Common.DropDown",
             "placeholder": "Select Management Group",
             "constraints": {
