@@ -164,6 +164,18 @@
             }
           }
         ]
+      },
+      {
+        "name": "tagSettings",
+        "label": "Tag Setting",
+        "bladeTitle": "Tag Setting",
+        "elements": [
+          {
+            "name": "element1",
+            "type": "Microsoft.Common.TagsByResource",
+            "visible": true
+          }
+        ]
       }
     ],
     "outputs": {
