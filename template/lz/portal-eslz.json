@@ -209,17 +209,17 @@
                   "path": "subscriptions?api-version=2020-01-01"
                 }
               },
-              {
-                "name": "providerDropDown",
-                "type": "Microsoft.Common.DropDown",
-                "label": "Available storage accounts (Arm API)",
-                "toolTip": "Select a storage account from the available list.",
-                "constraints": {
-                  // "allowedValues": "[map(steps('bladeData').armApiControl.value, (item) => parse(concat('{\"label\":\"', item.name, '\",\"value\":\"', item.name, '\"}')))]"
-                  "allowedValues": "[map(steps('lzSettings').existingSubscription.armApiControl, (item) => parse(concat('{\"label\":\"', item.displayName, \"value\":\"', toLower(item.id), '\"}')))]"
-                },
-                "visible": true
-              },
+              // {
+              //   "name": "providerDropDown",
+              //   "type": "Microsoft.Common.DropDown",
+              //   "label": "Available storage accounts (Arm API)",
+              //   "toolTip": "Select a storage account from the available list.",
+              //   "constraints": {
+              //     // "allowedValues": "[map(steps('bladeData').armApiControl.value, (item) => parse(concat('{\"label\":\"', item.name, '\",\"value\":\"', item.name, '\"}')))]"
+              //     "allowedValues": "[map(steps('lzSettings').existingSubscription.armApiControl, (item) => parse(concat('{\"label\":\"', item.displayName, \"value\":\"', toLower(item.id), '\"}')))]"
+              //   },
+              //   "visible": true
+              // },
               {
                 "name": "text2",
                 "type": "Microsoft.Common.TextBox",
