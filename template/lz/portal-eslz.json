@@ -212,6 +212,14 @@
             ]
           },
           {
+            "name": "mgApi",
+            "type": "Microsoft.Solutions.ArmApiControl",
+            "request": {
+              "method": "GET",
+              "path": "providers/Microsoft.Management/managementGroups?api-version=2020-02-01"
+            }
+          },
+          {
             "id": "esMgSelection",
             "header": "Management group",
             "element": {
