@@ -227,7 +227,7 @@
       }
     ],
     "outputs": {
-      "region": "[basics('region')]",
+      "region": "[basics('regions')]",
       "ownerUPN": "[steps('lzSettings').ownerUPN]",
       "ownerDivisi": "[steps('lzSettings').ownerDivisi]",
       "optionStaging": "[steps('lzSettings').optionStaging]",
