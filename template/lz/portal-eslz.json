@@ -210,19 +210,33 @@
                 "label": "Landing Zone Workload Subscription"
               }
             ]
+          },
+          {
+            "id": "esMgSelection",
+            "header": "Management group",
+            "element": {
+              "name": "dropDown1",
+              "type": "Microsoft.Common.DropDown",
+              "placeholder": "Select Management Group",
+              "constraints": {
+                "allowedValues": "[map(steps('lzSettings').createSubscription.mgApi.value, (mg) => parse(concat('{\"label\":\"', mg.name, '\",\"description\":\"', mg.id, '\",\"value\":\"', toLower(mg.name), '\"}')) )]",
+                "required": true
+              }
+            }
           }
         ]
       }
     ],
     "outputs": {
-      "location": "[basic('region')]",
+      "location": "[basics('region')]",
       "ownerUPN": "[steps('lzSettings').ownerUPN]",
       "ownerDivisi": "[steps('lzSettings').ownerDivisi]",
       "optionStaging": "[steps('lzSettings').optionStaging]",
       "optionSubscription": "[steps('lzSettings').optionSubscription]",
       "subscriptions": "[steps('lzSettings').createSubscription.esSubscription]",
       "billingAccount": "[steps('lzSettings').createSubscription.esEa]",
-      "esLZSub": "[steps('lzSettings').existingSubscription.esLZSubs]"
+      "esLZSub": "[steps('lzSettings').existingSubscription.esLZSubs]",
+      "managementGroup": "[steps('lzSettings').existingSubscription.esMgSelection]"
     }
   }
 }
