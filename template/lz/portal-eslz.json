@@ -218,6 +218,11 @@
                 "options": {
                   "text": "[steps('lzSetting').existingSubscription.sbApi.value]"
                 }
+              },
+              {
+                "type": "Microsoft.Common.SubscriptionSelector",
+                "name": "esSingleSub",
+                "label": "Single platform subscription"
               }
             ],
             "visible": true
