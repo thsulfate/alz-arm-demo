@@ -11,6 +11,39 @@
         "bladeTitle": "Create ES Landing Zone",
         "elements": [
           {
+            "name": "ownerUPN",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Owner Subscription UPN"
+          },
+          {
+            "name": "ownerDivisi",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Owner Subscription Divisi"
+          },
+          {
+            "name": "optionStaging",
+            "type": "Microsoft.Common.OptionsGroup",
+            "label": "Staging Landing Zone",
+            "defaultValue": "Production",
+            "constraints": {
+              "allowedValues": [
+                {
+                  "label": "Production",
+                  "value": "Production"
+                },
+                {
+                  "label": "Development",
+                  "value": "Development"
+                },
+                {
+                  "label": "QA",
+                  "value": "QA"
+                }
+              ]
+            },
+            "visible": true
+          },
+          {
             "name": "optionSubscription",
             "type": "Microsoft.Common.OptionsGroup",
             "label": "Apakah sudah terdapat subscription eksisting?",
