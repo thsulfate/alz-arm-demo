@@ -109,8 +109,7 @@
                 "filterPlaceholder": "Filter items ...",
                 "multiLine": true,
                 "constraints": {
-                  "allowedValues": "[map(steps('lzSettings').createSubscription.esBillingApi.value, (billing) => parse(concat('{\"label\":\"', billing.properties.displayName, '\",\"description\":\"', billing.id, '\",\"value\":\"', toLower(billing.id), '\"}')) )]",
-                  "required": true
+                  "allowedValues": "[map(steps('lzSettings').createSubscription.esBillingApi.value, (billing) => parse(concat('{\"label\":\"', billing.properties.displayName, '\",\"description\":\"', billing.id, '\",\"value\":\"', toLower(billing.id), '\"}')) )]"
                 }
               },
               {
