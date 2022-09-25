@@ -227,7 +227,7 @@
       }
     ],
     "outputs": {
-      "region": "[basics('regions')]",
+      "region": "[steps('basics').resourceScope.location.name]",
       "ownerUPN": "[steps('lzSettings').ownerUPN]",
       "ownerDivisi": "[steps('lzSettings').ownerDivisi]",
       "optionStaging": "[steps('lzSettings').optionStaging]",
