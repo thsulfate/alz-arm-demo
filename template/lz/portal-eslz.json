@@ -204,15 +204,24 @@
             "label": "Eksisting Subscription",
             "elements": [
               {
-                "name": "text1",
-                "type": "Microsoft.Common.TextBox",
-                "label": "Example text box 1"
+                "name": "armApiControl",
+                "type": "Microsoft.Solutions.ArmApiControl",
+                "request": {
+                  "method": "GET",
+                  "path": "subscriptions?api-version=2020-01-01"
+                }
               },
               {
-                "name": "text2",
-                "type": "Microsoft.Common.TextBox",
-                "label": "Example text box 2"
-              }
+                "name": "providerDropDown",
+                "type": "Microsoft.Common.DropDown",
+                "label": "Available storage accounts (Arm API)",
+                "toolTip": "Select a storage account from the available list.",
+                "constraints": {
+                  // "allowedValues": "[map(steps('bladeData').armApiControl.value, (item) => parse(concat('{\"label\":\"', item.name, '\",\"value\":\"', item.name, '\"}')))]"
+                  "allowedValues": "[map(steps('lzSettings').existingSubscription.armApiControl, (item) => parse(concat('{\"label\":\"', item.displayName, \"value\":\"', toLower(item.id), '\"}')))]"
+                },
+                "visible": true
+              },
             ],
             "visible": true
           }
