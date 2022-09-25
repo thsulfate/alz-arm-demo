@@ -13,12 +13,14 @@
           {
             "name": "ownerUPN",
             "type": "Microsoft.Common.TextBox",
-            "label": "Owner Subscription UPN"
+            "label": "Owner Subscription UPN",
+            "visible": true
           },
           {
             "name": "ownerDivisi",
             "type": "Microsoft.Common.TextBox",
-            "label": "Owner Subscription Divisi"
+            "label": "Owner Subscription Divisi",
+            "visible": true
           },
           {
             "name": "optionStaging",
