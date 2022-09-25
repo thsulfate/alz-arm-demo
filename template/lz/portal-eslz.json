@@ -205,7 +205,7 @@
                 "name": "subscriptionSelector",
                 "type": "Microsoft.Solutions.ResourceSelector",
                 "label": "Select Subscription",
-                "resourceType": "Microsoft.Subscription"
+                "resourceType": "Microsoft.Subscription/aliases"
               },
               {
                 "name": "text2",
