@@ -204,7 +204,7 @@
             "label": "Eksisting Subscription",
             "elements": [
               {
-                "name": "armApiControl",
+                "name": "sbApi",
                 "type": "Microsoft.Solutions.ArmApiControl",
                 "request": {
                   "method": "GET",
@@ -216,7 +216,7 @@
                 "type": "Microsoft.Common.InfoBox",
                 "visible": true,
                 "options": {
-                  "text": "[steps('lzSetting').existingSubscription.armApiControl.value]"
+                  "text": "[steps('lzSetting').existingSubscription.sbApi.value]"
                 }
               }
             ],
