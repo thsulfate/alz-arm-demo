@@ -74,7 +74,7 @@
                 "filterPlaceholder": "Filter items ...",
                 "multiLine": true,
                 "constraints": {
-                  "allowedValues": "[map(steps('lzSettings').esBillingApi.value, (billing) => parse(concat('{\"label\":\"', billing.properties.displayName, '\",\"description\":\"', billing.id, '\",\"value\":\"', toLower(billing.id), '\"}')) )]",
+                  "allowedValues": "[map(steps('lzSettings').createSubscription.esBillingApi.value, (billing) => parse(concat('{\"label\":\"', billing.properties.displayName, '\",\"description\":\"', billing.id, '\",\"value\":\"', toLower(billing.id), '\"}')) )]",
                   "required": true
                 }
               },
@@ -83,7 +83,7 @@
                 "type": "Microsoft.Solutions.ArmApiControl",
                 "request": {
                   "method": "GET",
-                  "path": "[concat(steps('lzSettings').esBillingAccount, '/enrollmentAccounts/', '?api-version=2019-10-01-preview')]"
+                  "path": "[concat(steps('lzSettings').createSubscription.esBillingAccount, '/enrollmentAccounts/', '?api-version=2019-10-01-preview')]"
                 }
               },
               {
@@ -97,7 +97,7 @@
                 "filterPlaceholder": "Filter items ...",
                 "multiLine": true,
                 "constraints": {
-                  "allowedValues": "[map(steps('lzSettings').esEaApi.value, (ea) => parse(concat('{\"label\":\"', ea.properties.displayName, '\",\"description\":\"', ea.id, '\",\"value\":\"', toLower(ea.id), '\"}')) )]",
+                  "allowedValues": "[map(steps('lzSettings').createSubscription.esEaApi.value, (ea) => parse(concat('{\"label\":\"', ea.properties.displayName, '\",\"description\":\"', ea.id, '\",\"value\":\"', toLower(ea.id), '\"}')) )]",
                   "required": true
                 }
               },
@@ -135,7 +135,7 @@
                         "type": "Microsoft.Common.DropDown",
                         "placeholder": "Select Management Group",
                         "constraints": {
-                          "allowedValues": "[map(steps('lzSettings').mgApi.value, (mg) => parse(concat('{\"label\":\"', mg.name, '\",\"description\":\"', mg.id, '\",\"value\":\"', toLower(mg.name), '\"}')) )]",
+                          "allowedValues": "[map(steps('lzSettings').createSubscription.mgApi.value, (mg) => parse(concat('{\"label\":\"', mg.name, '\",\"description\":\"', mg.id, '\",\"value\":\"', toLower(mg.name), '\"}')) )]",
                           "required": true
                         }
                       }
