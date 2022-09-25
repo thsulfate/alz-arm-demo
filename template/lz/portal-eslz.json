@@ -220,16 +220,11 @@
             }
           },
           {
-            "id": "esMgSelection",
-            "header": "Management group",
-            "element": {
-              "name": "dropDown1",
-              "type": "Microsoft.Common.DropDown",
-              "placeholder": "Select Management Group",
-              "constraints": {
-                "allowedValues": "[map(steps('lzSettings').existingSubscription.mgApi.value, (mg) => parse(concat('{\"label\":\"', mg.name, '\",\"description\":\"', mg.id, '\",\"value\":\"', toLower(mg.name), '\"}')) )]",
-                "required": true
-              }
+            "name": "managamentGroup",
+            "type": "Microsoft.Common.DropDown",
+            "placeholder": "Select Management Group",
+            "constraints": {
+              "allowedValues": "[map(steps('lzSettings').existingSubscription.mgApi.value, (mg) => parse(concat('{\"label\":\"', mg.name, '\",\"description\":\"', mg.id, '\",\"value\":\"', toLower(mg.name), '\"}')) )]"
             }
           }
         ]
@@ -244,7 +239,7 @@
       "subscriptions": "[steps('lzSettings').createSubscription.esSubscription]",
       "billingAccount": "[steps('lzSettings').createSubscription.esEa]",
       "esLZSub": "[steps('lzSettings').existingSubscription.esLZSubs]",
-      "managementGroup": "[steps('lzSettings').existingSubscription.esMgSelection]"
+      "managementGroup": "[steps('lzSettings').existingSubscription.managementGroup]"
     }
   }
 }
