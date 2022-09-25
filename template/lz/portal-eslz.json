@@ -11,6 +11,39 @@
         "bladeTitle": "Create ES Landing Zone",
         "elements": [
           {
+            "name": "ownerUPN",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Owner Subscription UPN"
+          },
+          {
+            "name": "ownerDivisi",
+            "type": "Microsoft.Common.TextBox",
+            "label": "Owner Subscription Divisi"
+          },
+          {
+            "name": "optionStaging",
+            "type": "Microsoft.Common.OptionsGroup",
+            "label": "Staging Landing Zone",
+            "defaultValue": "Yes",
+            "constraints": {
+              "allowedValues": [
+                {
+                  "label": "Production",
+                  "value": "Production"
+                },
+                {
+                  "label": "Development",
+                  "value": "Development"
+                },
+                {
+                  "label": "QA",
+                  "value": "QA"
+                }
+              ]
+            },
+            "visible": true
+          },
+          {
             "name": "optionSubscription",
             "type": "Microsoft.Common.OptionsGroup",
             "label": "Apakah sudah terdapat subscription eksisting?",
@@ -135,7 +168,7 @@
                         "type": "Microsoft.Common.DropDown",
                         "placeholder": "Select Management Group",
                         "constraints": {
-                          "allowedValues": "[map(steps('lzSettings').createSubscription.mgApi.value, (mg) => parse(concat('{\"label\":\"', mg.name, '\",\"description\":\"', mg.id, '\",\"value\":\"', toLower(mg.name), '\"}')) )]",
+                          "allowedValues": "[map(steps('lzSettings').createSubscription .mgApi.value, (mg) => parse(concat('{\"label\":\"', mg.name, '\",\"description\":\"', mg.id, '\",\"value\":\"', toLower(mg.name), '\"}')) )]",
                           "required": true
                         }
                       }
@@ -169,9 +202,15 @@
             "label": "Eksisting Subscription",
             "elements": [
               {
-                "name": "text1",
-                "type": "Microsoft.Common.TextBox",
-                "label": "Example text box 1"
+                "name": "subscriptionSelector",
+                "type": "Microsoft.Solutions.ResourceSelector",
+                "label": "Select Subscription",
+                "resourceType": "Microsoft.Subscription/aliases",
+                "options": {
+                  "filter": {
+                    "location": "onBasics"
+                  }
+                }
               },
               {
                 "name": "text2",
