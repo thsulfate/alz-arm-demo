@@ -220,7 +220,7 @@
               {
                 "name": "managementGroup",
                 "type": "Microsoft.Common.DropDown",
-                "placeholder": "Select Management Group",
+                "label": "Select Management Group",
                 "constraints": {
                   "allowedValues": "[map(steps('lzSettings').existingSubscription.mgApi.value, (mg) => parse(concat('{\"label\":\"', mg.name, '\",\"description\":\"', mg.id, '\",\"value\":\"', toLower(mg.name), '\"}')) )]"
                 }
