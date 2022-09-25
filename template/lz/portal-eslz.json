@@ -206,7 +206,7 @@
                 "type": "Microsoft.Solutions.ArmApiControl",
                 "request": {
                   "method": "GET",
-                  "path": "[concat('/providers/Microsoft.Subscription/aliases?api-version=2021-10-01')]"
+                  "path": "[concat('/subscriptions?api-version=2020-01-01')]"
                 }
               },
               {
@@ -216,7 +216,7 @@
                 "toolTip": "Select a storage account from the available list.",
                 "constraints": {
                   // "allowedValues": "[map(steps('bladeData').armApiControl.value, (item) => parse(concat('{\"label\":\"', item.name, '\",\"value\":\"', item.name, '\"}')))]"
-                  "allowedValues": "[map(steps('lzSettings').existingSubscription.armApiControl, (item) => parse(concat('{\"label\":\"', item.name, \"value\":\"', toLower(item.id), '\"}')))]"
+                  "allowedValues": "[map(steps('lzSettings').existingSubscription.armApiControl, (item) => parse(concat('{\"label\":\"', item.displayName, \"value\":\"', toLower(item.id), '\"}')))]"
                 },
                 "visible": true
               },
