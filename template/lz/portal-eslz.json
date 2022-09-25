@@ -132,8 +132,7 @@
                 "filterPlaceholder": "Filter items ...",
                 "multiLine": true,
                 "constraints": {
-                  "allowedValues": "[map(steps('lzSettings').createSubscription.esEaApi.value, (ea) => parse(concat('{\"label\":\"', ea.properties.displayName, '\",\"description\":\"', ea.id, '\",\"value\":\"', toLower(ea.id), '\"}')) )]",
-                  "required": true
+                  "allowedValues": "[map(steps('lzSettings').createSubscription.esEaApi.value, (ea) => parse(concat('{\"label\":\"', ea.properties.displayName, '\",\"description\":\"', ea.id, '\",\"value\":\"', toLower(ea.id), '\"}')) )]"
                 }
               },
               {
@@ -170,8 +169,7 @@
                         "type": "Microsoft.Common.DropDown",
                         "placeholder": "Select Management Group",
                         "constraints": {
-                          "allowedValues": "[map(steps('lzSettings').createSubscription.mgApi.value, (mg) => parse(concat('{\"label\":\"', mg.name, '\",\"description\":\"', mg.id, '\",\"value\":\"', toLower(mg.name), '\"}')) )]",
-                          "required": true
+                          "allowedValues": "[map(steps('lzSettings').createSubscription.mgApi.value, (mg) => parse(concat('{\"label\":\"', mg.name, '\",\"description\":\"', mg.id, '\",\"value\":\"', toLower(mg.name), '\"}')) )]"
                         }
                       }
                     },
@@ -183,7 +181,6 @@
                         "type": "Microsoft.Common.TextBox",
                         "placeholder": "Subscription name...",
                         "constraints": {
-                          "required": true,
                           "validations": [
                             {
                               "regex": "^[a-z0-9A-Z]{1,30}$",
@@ -231,6 +228,7 @@
       }
     ],
     "outputs": {
+      "region": "[basics('region')]",
       "ownerUPN": "[steps('lzSettings').ownerUPN]",
       "ownerDivisi": "[steps('lzSettings').ownerDivisi]",
       "optionStaging": "[steps('lzSettings').optionStaging]",
