@@ -221,7 +221,7 @@
                   "allowedValues": "[map(steps('lzSettings').existingSubscription.armApiControl, (item) => parse(concat('{\"label\":\"', item.displayName, \"value\":\"', toLower(item.id), '\"}')))]"
                 },
                 "visible": true
-              },
+              }
             ],
             "visible": true
           }
