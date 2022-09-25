@@ -231,7 +231,6 @@
       }
     ],
     "outputs": {
-      "location": "[basics('region')]",
       "ownerUPN": "[steps('lzSettings').ownerUPN]",
       "ownerDivisi": "[steps('lzSettings').ownerDivisi]",
       "optionStaging": "[steps('lzSettings').optionStaging]",
