@@ -173,6 +173,7 @@
           {
             "name": "element1",
             "type": "Microsoft.Common.TagsByResource",
+            "resources": [],
             "visible": true
           }
         ]
