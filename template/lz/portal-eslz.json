@@ -218,7 +218,7 @@
       "esMgSelection": "[steps('lzSettings').createSubscription.esMgSelection]",
       "esSubName": "[steps('lzSettings').createSubscription.esSubName]",
       "esLZSub": "[steps('lzSettings').existingSubscription.esLZSub]",
-      "managementGroup": "[steps('lzSettings').existingSubscription.managementGroup]",
+      "managementGroup": "[steps('lzSettings').existingSubscription.managementGroup]"
     }
   }
 }
