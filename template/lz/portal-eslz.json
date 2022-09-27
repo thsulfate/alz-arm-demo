@@ -3,7 +3,23 @@
   "version": "0.1.2-preview",
   "parameters": {
     "config": {},
-    "basics": [],
+    "basics": [
+      {
+        "name": "basics",
+          "label": "Basics",
+          "elements": [
+            {
+              "name": "resourceScope",
+              "type": "Microsoft.Common.ResourceScope",
+              "location": {
+                "resourceTypes": [
+                  "microsoft.resources/resourcegroups"
+                ]
+              }
+            }
+          ]
+      }
+    ],
     "steps": [
       {
         "name": "lzSettings",
