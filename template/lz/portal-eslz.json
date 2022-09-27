@@ -175,6 +175,7 @@
               {
                 "name": "esSubName",
                 "label": "Subscription name",
+                "type": "Microsoft.Common.TextBox",
                 "constraints": {
                   "validations": [
                     {
