@@ -1,11 +1,38 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-08-01/tenantDeploymentTemplate.json#",
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "subscriptions": {
-      "type": "array"
+    "esMgSelection": {
+      "type": "string"
+    },
+    "esSubName": {
+      "type": "string"
     },
     "billingAccount": {
+      "type": "string"
+    },
+    "region": {
+      "type": "string"
+    },
+    "ownerUPN": {
+      "type": "string"
+    },
+    "ownerDivisi": {
+      "type": "string"
+    },
+    "optionStaging": {
+      "type": "string"
+    },
+    "lzType": {
+      "type": "string"
+    },
+    "optionSubscription": {
+      "type": "string"
+    },
+    "esLZSub": {
+      "type": "string"
+    },
+    "managementGroup": {
       "type": "string"
     }
   },
@@ -13,19 +40,82 @@
   },
   "resources": [
     {
-      "scope": "/",
-      "name": "[concat(parameters('subscriptions')[copyIndex()].esSubName)]",
-      "type": "Microsoft.Subscription/aliases",
-      "apiVersion": "2020-09-01",
-      "copy": {
-        "name": "eslzSubCopy",
-        "count": "[length(parameters('subscriptions'))]"
-      },
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2017-05-10",
+      "name": "lzDeploymentTemplate",
       "properties": {
-        "workLoad": "Production",
-        "displayName": "[concat(parameters('subscriptions')[copyIndex()].esSubName)]",
-        "billingScope": "[parameters('billingAccount')]",
-        "managementGroupId": "[tenantResourceId('Microsoft.Management/managementGroups/', concat(parameters('subscriptions')[copyIndex()].esMgSelection))]"
+        "expressionEvaluationOptions": {
+          "scope": "outter"
+        },
+        "mode": "Incremental",
+        "parameters": {},
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-08-01/tenantDeploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "parameters": {},
+          "variables": {},
+          "resources": [
+            {
+              "condition": "[equals(parameters('optionSubscription'),'Yes')]",
+              "scope": "/",
+              "name": "[concat(parameters('esSubName'))]",
+              "type": "Microsoft.Subscription/aliases",
+              "apiVersion": "2020-09-01",
+              "properties": {
+                "workLoad": "Production",
+                "displayName": "[concat(parameters('esSubName'))]",
+                "billingScope": "[parameters('billingAccount')]",
+                "managementGroupId": "[tenantResourceId('Microsoft.Management/managementGroups/', concat(parameters('esMgSelection')))]"
+              }
+            },
+            {
+              "condition": "[equals(parameters('optionSubscription'),'No')]",
+              "name": "[parameters('managementGroup')]",
+              "type": "Microsoft.Management/managementGroups",
+              "apiVersion": "2019-11-01",
+              "properties": {},
+              "resources": [
+                {
+                  "type": "subscriptions",
+                  "apiVersion": "2020-05-01",
+                  "name": "[parameters('esLZSub').id]",
+                  "dependsOn": [
+                    "[parameters('managementGroup')]"
+                  ]
+                }
+              ]
+            }
+          ],
+          "outputs": {
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2017-05-10",
+      "name": "rgDeploymentTemplate",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "outter"
+        },
+        "mode": "Incremental",
+        "parameters": {},
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "parameters": {},
+          "variables": {},
+          "resources": [
+            {
+              "name": "rg-network-lz",
+              "type": "Microsoft.Resources/resourceGroups",
+              "apiVersion": "2018-05-01",
+              "location": "[parameters('region')]"
+            }
+          ],
+          "outputs": {}
+        }
       }
     }
   ],

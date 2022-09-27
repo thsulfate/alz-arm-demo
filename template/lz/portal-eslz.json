@@ -46,6 +46,25 @@
             "visible": true
           },
           {
+            "name": "lzType",
+            "type": "Microsoft.Common.OptionsGroup",
+            "label": "Apakah merupakan Data Landing Zone?",
+            "defaultValue": "No",
+            "constraints": {
+              "allowedValues": [
+                {
+                  "label": "Yes",
+                  "value": "Yes"
+                },
+                {
+                  "label": "No",
+                  "value": "No"
+                }
+              ]
+            },
+            "visible": true
+          },
+          {
             "name": "optionSubscription",
             "type": "Microsoft.Common.OptionsGroup",
             "label": "Apakah sudah terdapat subscription eksisting?",
@@ -146,48 +165,21 @@
                 }
               },
               {
-                "name": "esSubscription",
-                "type": "Microsoft.Common.EditableGrid",
-                "ariaLabel": "Select management group and provide subscription name",
-                "label": "Subscriptions",
+                "name": "esMgSelection",
+                "label": "Management group",
+                "type": "Microsoft.Common.DropDown",
                 "constraints": {
-                  "width": "Medium",
-                  "rows": {
-                    "count": {
-                      "min": 1,
-                      "max": 10
-                    }
-                  },
-                  "columns": [
+                  "allowedValues": "[map(steps('lzSettings').createSubscription.mgApi.value, (mg) => parse(concat('{\"label\":\"', mg.name, '\",\"description\":\"', mg.id, '\",\"value\":\"', toLower(mg.name), '\"}')) )]"
+                }
+              },
+              {
+                "name": "esSubName",
+                "label": "Subscription name",
+                "constraints": {
+                  "validations": [
                     {
-                      "id": "esMgSelection",
-                      "header": "Management group",
-                      "width": "1fr",
-                      "element": {
-                        "name": "dropDown1",
-                        "type": "Microsoft.Common.DropDown",
-                        "placeholder": "Select Management Group",
-                        "constraints": {
-                          "allowedValues": "[map(steps('lzSettings').createSubscription.mgApi.value, (mg) => parse(concat('{\"label\":\"', mg.name, '\",\"description\":\"', mg.id, '\",\"value\":\"', toLower(mg.name), '\"}')) )]"
-                        }
-                      }
-                    },
-                    {
-                      "id": "esSubName",
-                      "header": "Subscription name",
-                      "width": "1fr",
-                      "element": {
-                        "type": "Microsoft.Common.TextBox",
-                        "placeholder": "Subscription name...",
-                        "constraints": {
-                          "validations": [
-                            {
-                              "regex": "^[a-z0-9A-Z]{1,30}$",
-                              "message": "Only alphanumeric characters are allowed, and the value must be 1-30 characters long."
-                            }
-                          ]
-                        }
-                      }
+                      "regex": "^[a-z0-9A-Z]{1,30}$",
+                      "message": "Only alphanumeric characters are allowed, and the value must be 1-30 characters long."
                     }
                   ]
                 }
@@ -230,12 +222,14 @@
       "region": "[steps('basics').resourceScope.location.name]",
       "ownerUPN": "[steps('lzSettings').ownerUPN]",
       "ownerDivisi": "[steps('lzSettings').ownerDivisi]",
+      "lzType": "[steps('lzSettings').lzType]",
       "optionStaging": "[steps('lzSettings').optionStaging]",
       "optionSubscription": "[steps('lzSettings').optionSubscription]",
-      "subscriptions": "[steps('lzSettings').createSubscription.esSubscription]",
       "billingAccount": "[steps('lzSettings').createSubscription.esEa]",
+      "esMgSelection": "[steps('lzSettings').createSubscription.esMgSelection]",
+      "esSubName": "[steps('lzSettings').createSubscription.esSubName]",
       "esLZSub": "[steps('lzSettings').existingSubscription.esLZSub]",
-      "managementGroup": "[steps('lzSettings').existingSubscription.managementGroup]"
+      "managementGroup": "[steps('lzSettings').existingSubscription.managementGroup]",
     }
   }
 }
