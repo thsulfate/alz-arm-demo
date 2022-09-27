@@ -5,19 +5,10 @@
     "config": {},
     "basics": [
       {
-        "name": "basics",
-          "label": "Basics",
-          "elements": [
-            {
-              "name": "resourceScope",
-              "type": "Microsoft.Common.ResourceScope",
-              "location": {
-                "resourceTypes": [
-                  "microsoft.resources/resourcegroups"
-                ]
-              }
-            }
-          ]
+        "name": "resourceScope",
+        "type": "Microsoft.Common.ResourceScope",
+        "location": {
+        }
       }
     ],
     "steps": [
