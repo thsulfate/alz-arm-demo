@@ -1,0 +1,101 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "esMgSelection": {
+      "type": "string"
+    },
+    "esSubName": {
+      "type": "string"
+    },
+    "billingAccount": {
+      "type": "string"
+    },
+    "region": {
+      "type": "string"
+    },
+    "ownerUPN": {
+      "type": "string"
+    },
+    "ownerDivisi": {
+      "type": "string"
+    },
+    "optionStaging": {
+      "type": "string"
+    },
+    "lzType": {
+      "type": "string"
+    },
+    "optionSubscription": {
+      "type": "string"
+    },
+    "esLZSub": {
+      "type": "string"
+    },
+    "managementGroup": {
+      "type": "string"
+    }
+  },
+  "variables": {
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2017-05-10",
+      "name": "lzDeploymentTemplate",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "outter"
+        },
+        "mode": "Incremental",
+        "parameters": {},
+        "template": {
+          "http-uri": "https://gist.githubusercontent.com/rchaganti/d7e35878c6687da07ae5fa5dfb7d54c2/raw/b184d22bd78fac8da0bb63dc0fb955c1bc593b60/resourceGroup.azrm.json",
+          {
+            "condition": "[equals(parameters('optionSubscription'),'No')]",
+            "name": "[parameters('managementGroup')]",
+            "type": "Microsoft.Management/managementGroups",
+            "apiVersion": "2019-11-01",
+            "properties": {},
+            "resources": [
+              {
+                "type": "subscriptions",
+                "apiVersion": "2020-05-01",
+                "name": "[parameters('esLZSub').id]",
+                "dependsOn": [
+                  "[parameters('managementGroup')]"
+                ]
+              }
+            ]
+          }
+  ],
+  "outputs": {
+  }
+} } }, {
+  "type": "Microsoft.Resources/deployments",
+  "apiVersion": "2017-05-10",
+  "name": "rgDeploymentTemplate",
+  "properties": {
+    "expressionEvaluationOptions": {
+      "scope": "outter"
+    },
+    "mode": "Incremental",
+    "parameters": {},
+    "template": {
+      "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {},
+      "variables": {},
+      "resources": [
+        {
+          "name": "rg-network-lz",
+          "type": "Microsoft.Resources/resourceGroups",
+          "apiVersion": "2018-05-01",
+          "location": "[parameters('region')]"
+        }
+      ],
+      "outputs": {}
+    }
+  }
+} ], "outputs": {
+} }
