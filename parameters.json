@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "esLZSub": {
+      "value": "9e0527d5-9767-45fd-b47a-de5c417e2273"
+    },
+    "managementGroup": {
+      "value": "ALZ Holding"
+    },
+    "location": {
+      "value": "southeastasia"
+    },
+    "rgNetwork": {
+      "value": "[concat('rg-network-', parameters('location'),'-001')]"
+    },
+    "rgData": {
+      "value": "[concat('rg-data-', parameters('location'),'-001')]"
+    },
+    "rgApp": {
+      "value": "[concat('rg-app-', parameters('location'),'-001')]"
+    },
+    "rgNetworkTags": {
+      "value": {
+        "env": "demo",
+        "tier": "lz",
+        "bia_lv": "5",
+        "departement": "nto"
+      }
+    },
+    "rgDataTags": {
+      "value": {
+        "env": "demo",
+        "tier": "lz",
+        "bia_lv": "5",
+        "departement": "cio"
+      }
+    },
+    "rgAppTags": {
+      "value": {
+        "env": "demo",
+        "tier": "lz",
+        "bia_lv": "5",
+        "departement": "cio"
+      }
+    }
+  }
+}
